@@ -107,7 +107,6 @@ internal class DiscordBotWorker: BackgroundService
       try
       {
         using HttpResponseMessage response = await myHttpClient.GetAsync(rssUrl);
-        response.EnsureSuccessStatusCode();
         return (response.StatusCode != HttpStatusCode.NotModified);
       }
       catch (Exception e)
