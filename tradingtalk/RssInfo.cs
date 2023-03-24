@@ -65,10 +65,9 @@ internal class RssInfo
 
       try
       {
+        Console.WriteLine($"item.PublishDate: {feed.Items.First().PublishDate.UtcDateTime} | lastUpdate: {lastUpdate.UtcDateTime} ");
         foreach (SyndicationItem item in feed.Items)
         {
-          Console.WriteLine($"item.PublishDate: {item.PublishDate.UtcDateTime} ");
-          Console.WriteLine($"lastUpdate      : {lastUpdate.UtcDateTime} ");
           if (item.PublishDate >= lastUpdate)
           {
             string itemTitle = item.Title.Text;
