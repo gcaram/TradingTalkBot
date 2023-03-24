@@ -38,20 +38,18 @@ internal class RssReader
 
     public async Task SendRSSMessage(DiscordSocketClient _client)
     {
-      var rssList = InitializeRssList();
-
-        foreach (var rssInfo in rssList)
+      foreach (var rssInfo in _rssList)
+      {
+        var messages = await rssInfo.GetNewMessagesAsync();
+        if(messages?.Count>0)
         {
-          var messages = await rssInfo.GetNewMessagesAsync();
-          if(messages?.Count>0)
+          Console.WriteLine($"Novas mensagens ({messages.Count}) de {rssInfo.Uri}");
+          var channel = _client.GetChannel(rssInfo.Channel) as IMessageChannel;
+          foreach (string message in messages)
           {
-            Console.WriteLine($"Novas mensagens ({messages.Count}) de {rssInfo.Uri}");
-            var channel = _client.GetChannel(rssInfo.Channel) as IMessageChannel;
-            foreach (string message in messages)
-            {
-              await channel.SendMessageAsync(message);
-            } 
-          }
+            await channel.SendMessageAsync(message);
+          } 
         }
+      }
     }
 }

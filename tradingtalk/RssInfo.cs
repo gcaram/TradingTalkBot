@@ -43,6 +43,7 @@ internal class RssInfo
     {
       HttpClient myHttpClient = new HttpClient();
       myHttpClient.DefaultRequestHeaders.IfModifiedSince = LastUpdate;
+      Console.WriteLine($"Modified Since: {myHttpClient.DefaultRequestHeaders.IfModifiedSince}");
       try
       {
         using HttpResponseMessage response = await myHttpClient.GetAsync(Uri);
