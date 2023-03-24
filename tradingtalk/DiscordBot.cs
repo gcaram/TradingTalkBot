@@ -18,6 +18,8 @@ internal class DiscordBotWorker: BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+      await Task.Delay(3000);
+
         await PrepareBot();
         await RunBot();
 
