@@ -46,7 +46,7 @@ internal class RssInfo
       try
       {
         using HttpResponseMessage response = await myHttpClient.GetAsync(Uri);
-        
+        Console.WriteLine($"Status code: {response.StatusCode}");
         if(response.StatusCode != HttpStatusCode.NotModified)
           return(true, SyndicationFeed.Load(XmlReader.Create(response.Content.ReadAsStream())));
         else
@@ -67,6 +67,8 @@ internal class RssInfo
       {
         foreach (SyndicationItem item in feed.Items)
         {
+          Console.WriteLine($"item.PublishDate: {item.PublishDate.UtcDateTime} ");
+          Console.WriteLine($"lastUpdate      : {lastUpdate.UtcDateTime} ");
           if (item.PublishDate >= lastUpdate)
           {
             string itemTitle = item.Title.Text;
