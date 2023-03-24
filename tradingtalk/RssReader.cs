@@ -45,7 +45,7 @@ internal class RssReader
           var messages = await rssInfo.GetNewMessagesAsync();
           if(messages?.Count>0)
           {
-            Console.WriteLine($"Novas mensagens ({messages.Count}) de {Uri}");
+            Console.WriteLine($"Novas mensagens ({messages.Count}) de {rssList.Uri}");
             var channel = _client.GetChannel(rssInfo.Channel) as IMessageChannel;
             foreach (string message in messages)
             {
