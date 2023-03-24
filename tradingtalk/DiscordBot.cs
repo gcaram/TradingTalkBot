@@ -42,6 +42,7 @@ internal class DiscordBotWorker: BackgroundService
 
     private async Task PrepareBot()
     {
+      Console.WriteLine("O Bot está sendo iniciado.");
       _client = new DiscordSocketClient();
       _token = _configuration["discordBotClientSecret"];
 
