@@ -25,6 +25,7 @@ internal class RssInfo
 
     public async Task<List<string>?> GetNewMessagesAsync()
     {
+      Console.WriteLine($"Checking {Uri}");
       var possibleUpdate = DateTime.Now;
       var check = await CheckNewMessagesAsync();
       if (check.modified)
